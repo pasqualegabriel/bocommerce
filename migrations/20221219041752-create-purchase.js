@@ -1,4 +1,7 @@
 'use strict'
+
+const { BUYING, states } = require('../src/constants/product')
+
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('purchases', {
@@ -19,6 +22,12 @@ module.exports = {
       },
       amount: {
         type: Sequelize.INTEGER
+      },
+      state: {
+        type: Sequelize.ENUM,
+        values: states,
+        defaultValue: BUYING,
+        allowNull: false
       },
       created_at: {
         allowNull: false,

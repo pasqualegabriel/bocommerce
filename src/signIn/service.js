@@ -1,15 +1,16 @@
 const moment = require('moment')
-const { compare: bcryptCompare } = require('bcryptjs')
+// const { compare: bcryptCompare } = require('bcryptjs')
 
 module.exports = (fastify) => {
-  async function signIn({ email, password }) {
+  async function signIn({ email, code }) {
     try {
-      const user = fastify.db.User.findOne({
-        where: { email },
+      const user = await fastify.db.User.findOne({
+        where: { email, code },
         raw: true
       })
-      const samePassword = await bcryptCompare(password, user.password)
-      if(!samePassword) throw new Error('error')
+      if(!user) throw new Error('error')
+      // const samePassword = await bcryptCompare(password, user.password)
+      // if(!samePassword) throw new Error('error')
       const userJwt = {
         email: user.email,
         firstName: user.firstName,
@@ -17,9 +18,9 @@ module.exports = (fastify) => {
         role: user.role,
         lastSignInDate: moment()
       }
-      const token = fastify.jwt.sign(userJwt, fastify.config.jwt.secret)
+      const jwt = fastify.jwt.sign(userJwt)
       return {
-        token
+        jwt
       }
     } catch (error) {
       throw new Error(error)

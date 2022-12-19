@@ -16,11 +16,13 @@ async function app() {
   fastify.setErrorHandler(utils.errorHandler)
 
   utils.jwt(fastify)
+  utils.openAPI(fastify)
   utils.request(fastify)
   utils.requestJSON(fastify)
 
   fastify.register(require('../ping'), { prefix: fastify.config.prefix })
   fastify.register(require('../products'), { prefix: fastify.config.prefix })
+  fastify.register(require('../productsAdmin'), { prefix: fastify.config.prefix })
   fastify.register(require('../signIn'), { prefix: fastify.config.prefix })
 
   fastify.ready(err => {

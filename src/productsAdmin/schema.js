@@ -1,31 +1,22 @@
 const schema = {
-  tags: ['user'],
-  summary: 'SignIn',
-  description: 'Log in',
-  body: {
-    type: 'object',
-    properties: {
-      email: {
-        type: 'string',
-        description: 'email',
-        format: 'email'
-      },
-      code: {
-        type: 'string',
-        description: 'password',
-        minLength: 4
-      }
-    },
-    required: [
-      'email',
-      'code'
-    ]
-  },
+  tags: ['products'],
+  summary: 'Products',
+  description: 'Products',
+  security: [{ keyAdminScheme: [] }],
   response: {
     200: {
       type: 'object',
       properties: {
-        jwt: { type: 'string' }
+        products: {
+          type: 'array',
+          items: {
+            type: 'object',
+            properties: {
+              id: { type: 'integer' },
+              title: { type: 'string' }
+            }
+          }
+        }
       }
     },
     400: {

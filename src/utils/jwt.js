@@ -7,7 +7,8 @@ module.exports = fastify => {
 
   fastify.decorate('authenticate', async (request, reply) => {
     try {
-      await request.jwtVerify()
+      const decoded = await request.jwtVerify()
+      request.jwt = decoded
     } catch (err) {
       throw new ResponseError(err)
     }

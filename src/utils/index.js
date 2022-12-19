@@ -6,6 +6,7 @@ const jwt = require('./jwt')
 const logger = require('./logger')
 const errorHandler = require('./errorHandler')
 const ResponseError = require('./ResponseError')
+const openAPI = require('./openapi')
 const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 const months = [
   'Jan',
@@ -33,7 +34,8 @@ module.exports = {
   genReqId,
   timestamp,
   logger,
-  zerofill
+  zerofill,
+  openAPI
 }
 
 /**
