@@ -15,11 +15,8 @@ const config = {
     timestamp: () => ',"time":"' + (new Date()).toISOString() + '"'
   },
   jwt: {
-    secret: variables.JWT_SECRET || 'secret',
-    exp: TWO_MONTHS,
-    sign: {
-      expiresIn: TWO_MONTHS
-    }
+    secret: variables.secret,
+    exp: TWO_MONTHS
   },
   schemes: ['https']
 }

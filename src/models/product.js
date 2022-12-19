@@ -5,7 +5,7 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Product extends Model {
     static associate(models) {
-      // define association here
+      // models.file.hasMany(models.request, { foreignKey: 'fk_fileid', sourceKey: 'id' })
     }
   }
   Product.init({
@@ -16,7 +16,9 @@ module.exports = (sequelize, DataTypes) => {
     category: DataTypes.STRING
   }, {
     sequelize,
+    tableName: 'products',
     modelName: 'Product',
+    underscored: true
   })
   return Product
 }

@@ -1,36 +1,54 @@
 'use strict'
+
+const { roles, USER } = require('../src/constants/user')
+
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Users', {
+    await queryInterface.createTable('users', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      firstName: {
+      first_name: {
+        allowNull: true,
         type: Sequelize.STRING
       },
-      lastName: {
+      last_name: {
+        allowNull: true,
         type: Sequelize.STRING
       },
       email: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      code: {
+        allowNull: true,
         type: Sequelize.STRING
       },
       role: {
-        type: Sequelize.STRING
+        type: Sequelize.ENUM,
+        values: roles,
+        defaultValue: USER,
+        allowNull: false
       },
-      createdAt: {
+      invalidation_date: {
+        type: Sequelize.DATE,
+        defaultValue: new Date(),
+        allowNull: false
+      },
+      created_at: {
         allowNull: false,
         type: Sequelize.DATE
       },
-      updatedAt: {
+      updated_at: {
         allowNull: false,
         type: Sequelize.DATE
       }
     })
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Users')
+    await queryInterface.dropTable('users')
   }
 }

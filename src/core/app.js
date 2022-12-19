@@ -1,5 +1,6 @@
 'use strict'
 const config = require('../../config/config')
+const models = require('../models')
 const { logger, ...utils } = require('../utils')
 const fastify = require('fastify')({
   requestIdHeader: 'x-request-id',
@@ -11,6 +12,7 @@ async function app() {
   // fastify.use(utils.cors)
   fastify.addHook('onRequest', utils.corsHook)
   fastify.decorate('config', config)
+  fastify.decorate('db', models)
   fastify.setErrorHandler(utils.errorHandler)
 
   utils.jwt(fastify)
@@ -18,6 +20,8 @@ async function app() {
   utils.requestJSON(fastify)
 
   fastify.register(require('../ping'), { prefix: fastify.config.prefix })
+  fastify.register(require('../products'), { prefix: fastify.config.prefix })
+  fastify.register(require('../signIn'), { prefix: fastify.config.prefix })
 
   fastify.ready(err => {
     if (err) throw err
