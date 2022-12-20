@@ -11,9 +11,10 @@ module.exports = (fastify) => {
     const jwtValidation = !decoded || decoded.role !== ADMIN
     const invalidationTime = moment(decoded.lastSignInDate)
     const invalidationDate = moment(user.invalidationDate)
+    if(userValidation || jwtValidation || invalidationTime <= invalidationDate) throw new Error('error')
     invalidationTime.add(invalidationTimeInMinutes, 'minutes')
-    const expirationValidation = invalidationTime > moment() && invalidationTime > invalidationDate
-    if(userValidation || jwtValidation || !expirationValidation) throw new Error('error')
+    const expirationValidation = invalidationTime > moment()
+    if(!expirationValidation) throw new Error('error')
     req.jwt = decoded
     req.user = user
   }

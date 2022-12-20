@@ -25,6 +25,8 @@ async function app() {
   fastify.register(require('../productsAdmin'), { prefix: fastify.config.prefix })
   fastify.register(require('../createProductAdmin'), { prefix: fastify.config.prefix })
   fastify.register(require('../signIn'), { prefix: fastify.config.prefix })
+  fastify.register(require('../sendCode'), { prefix: fastify.config.prefix })
+  fastify.register(require('../signOut'), { prefix: fastify.config.prefix })
 
   fastify.ready(err => {
     if (err) throw err
