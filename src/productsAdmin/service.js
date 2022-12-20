@@ -17,17 +17,18 @@ module.exports = (fastify) => {
     }
   }
 
-  function getProducts({ title, stock: stockQuery, minPrice, maxPrice, promotion, category, field = 'created_at', order: orderBy = 'desc' }, offset, limit) {
+  function getProducts({ title, stock: stockQuery, minPrice = 0.0, maxPrice, promotion, category, field = 'created_at', order: orderBy = 'desc' }, offset, limit) {
     const order = field && orderBy ? [[field, orderBy]] : []
     const stock = stockQuery ? { [Op.gt]: 0 } : 0
+    const price = maxPrice ? {
+      [Op.and]: {
+        [Op.gte]: minPrice,
+        [Op.lte]: maxPrice
+      }
+    } : { [Op.gte]: minPrice }
     const where = pickBy({
-      code: substring(title),
-      price: {
-        [Op.and]: {
-          [Op.gte]: minPrice,
-          [Op.lte]: maxPrice
-        }
-      },
+      title: substring(title),
+      price,
       category,
       stock,
       promotion

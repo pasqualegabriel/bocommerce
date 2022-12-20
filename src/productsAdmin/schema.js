@@ -1,7 +1,7 @@
 const schema = {
   tags: ['products'],
-  summary: 'Products',
-  description: 'Products',
+  summary: 'Products admin',
+  description: 'Products admin',
   security: [{ keyAdminScheme: [] }],
   response: {
     200: {

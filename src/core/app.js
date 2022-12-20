@@ -23,6 +23,7 @@ async function app() {
   fastify.register(require('../ping'), { prefix: fastify.config.prefix })
   fastify.register(require('../products'), { prefix: fastify.config.prefix })
   fastify.register(require('../productsAdmin'), { prefix: fastify.config.prefix })
+  fastify.register(require('../createProductAdmin'), { prefix: fastify.config.prefix })
   fastify.register(require('../signIn'), { prefix: fastify.config.prefix })
 
   fastify.ready(err => {

@@ -6,7 +6,7 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.BIGINT
       },
       title: {
         allowNull: false,
@@ -22,11 +22,13 @@ module.exports = {
       },
       old_price: {
         allowNull: false,
-        type: Sequelize.FLOAT
+        type: Sequelize.FLOAT,
+        defaultValue: 0.0
       },
       discount: {
-        allowNull: true,
-        type: Sequelize.FLOAT
+        allowNull: false,
+        type: Sequelize.FLOAT,
+        defaultValue: 0.0
       },
       stock: {
         allowNull: false,

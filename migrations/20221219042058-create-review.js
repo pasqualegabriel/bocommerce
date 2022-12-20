@@ -6,22 +6,22 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.BIGINT
       },
       rated: {
         type: Sequelize.STRING
       },
       commentary: {
-        type: Sequelize.FLOAT
+        type: Sequelize.STRING
       },
       productId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.BIGINT
       },
       userId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.BIGINT
       },
       name: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       created_at: {
         allowNull: false,

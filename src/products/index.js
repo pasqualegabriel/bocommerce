@@ -7,7 +7,7 @@ const route = async (fastify, opts, next) => {
   fastify.get('/products/all', { schema }, async (request, reply) => {
     const res = await products(request.query)
 
-    reply
+    return reply
       .type('application/json')
       .send(res)
   })

@@ -9,11 +9,55 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Product.init({
-    title: DataTypes.STRING,
-    description: DataTypes.STRING,
-    price: DataTypes.FLOAT,
-    stock: DataTypes.INTEGER,
-    category: DataTypes.STRING
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    description: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    price: {
+      type: DataTypes.FLOAT,
+      allowNull: false
+    },
+    oldPrice: {
+      type: DataTypes.FLOAT,
+      allowNull: false,
+      field: 'old_price',
+      defaultValue: 0.0
+    },
+    discount: {
+      type: DataTypes.FLOAT,
+      allowNull: false,
+      defaultValue: 0.0
+    },
+    stock: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    category: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    subCategory: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      field: 'sub_category'
+    },
+    promotion: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false
+    },
+    createdAt: {
+      type: DataTypes.DATE,
+      field: 'created_at'
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      field: 'updated_at'
+    },
   }, {
     sequelize,
     tableName: 'products',

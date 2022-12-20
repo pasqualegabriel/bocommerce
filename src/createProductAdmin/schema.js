@@ -1,34 +1,43 @@
 const schema = {
   tags: ['products'],
-  summary: 'Products',
-  description: 'Products',
-  query: {
+  summary: 'Create product',
+  description: 'Create product',
+  body: {
     type: 'object',
     properties: {
       title: {
-        type: 'string'
+        type: 'string',
+        description: 'title',
+        minLength: 1
       },
-      minPrice: {
-        type: 'number'
+      description: {
+        type: 'string',
+        description: 'description'
+      },
+      price: {
+        type: 'number',
+        description: 'price'
+      },
+      stock: {
+        type: 'integer',
+        description: 'stock'
       }
-    }
+    },
+    required: [
+      'title',
+      'price',
+      'stock'
+    ]
   },
   response: {
-    // 200: {
-    //   type: 'object',
-    //   properties: {
-    //     products: {
-    //       type: 'array',
-    //       items: {
-    //         type: 'object',
-    //         properties: {
-    //           id: { type: 'integer' },
-    //           title: { type: 'string' }
-    //         }
-    //       }
-    //     }
-    //   }
-    // },
+    200: {
+      type: 'object',
+      properties: {
+        status: {
+          type: 'string'
+        }
+      }
+    },
     400: {
       description: 'Bad request',
       type: 'object',
