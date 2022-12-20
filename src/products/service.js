@@ -2,7 +2,7 @@ const { getPageParams, substring } = require('../helpers')
 const { pickBy } = require('lodash')
 
 module.exports = (fastify) => {
-  const { Product, Sequelize: { Op } } = fastify.db
+  const { Product, Image, Sequelize: { Op } } = fastify.db
 
   async function products(query) {
     try {
@@ -35,6 +35,7 @@ module.exports = (fastify) => {
     return Product.findAndCountAll({
       where,
       ...pickBy({ offset, limit }),
+      include: [{ model: Image }],
       order
     })
   }

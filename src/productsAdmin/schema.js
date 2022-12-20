@@ -4,21 +4,21 @@ const schema = {
   description: 'Products admin',
   security: [{ keyAdminScheme: [] }],
   response: {
-    200: {
-      type: 'object',
-      properties: {
-        products: {
-          type: 'array',
-          items: {
-            type: 'object',
-            properties: {
-              id: { type: 'integer' },
-              title: { type: 'string' }
-            }
-          }
-        }
-      }
-    },
+    // 200: {
+    //   type: 'object',
+    //   properties: {
+    //     products: {
+    //       type: 'array',
+    //       items: {
+    //         type: 'object',
+    //         properties: {
+    //           id: { type: 'integer' },
+    //           title: { type: 'string' }
+    //         }
+    //       }
+    //     }
+    //   }
+    // },
     400: {
       description: 'Bad request',
       type: 'object',
