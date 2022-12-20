@@ -2,33 +2,44 @@
 const { Model } = require('sequelize')
 
 module.exports = (sequelize, DataTypes) => {
-  class Review extends Model {
+  class Address extends Model {
     static associate(models) {
       // define association here
     }
   }
-  Review.init({
-    rated: {
+  Address.init({
+    cp: {
+      allowNull: false,
+      type: DataTypes.DATE
+    },
+    street: {
       allowNull: false,
       type: DataTypes.STRING
     },
-    commentary: {
+    location: {
       allowNull: false,
       type: DataTypes.STRING
     },
-    productId: {
-      allowNull: false,
-      type: DataTypes.BIGINT,
-      field: 'product_id'
-    },
-    userId: {
-      allowNull: false,
-      type: DataTypes.BIGINT,
-      field: 'user_id'
-    },
-    name: {
+    nro: {
       allowNull: false,
       type: DataTypes.STRING
+    },
+    province: {
+      allowNull: false,
+      type: DataTypes.STRING
+    },
+    details: {
+      allowNull: false,
+      type: DataTypes.STRING
+    },
+    doorbell: {
+      allowNull: true,
+      type: DataTypes.STRING
+    },
+    main: {
+      allowNull: false,
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
     },
     createdAt: {
       type: DataTypes.DATE,
@@ -37,12 +48,12 @@ module.exports = (sequelize, DataTypes) => {
     updatedAt: {
       type: DataTypes.DATE,
       field: 'updated_at'
-    }
+    },
   }, {
     sequelize,
-    modelName: 'Review',
-    tableName: 'reviews',
+    modelName: 'Address',
+    tableName: 'addresses',
     underscored: true
   })
-  return Review
+  return Address
 }

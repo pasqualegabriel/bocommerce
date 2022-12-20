@@ -1,32 +1,33 @@
 'use strict'
+
+const { BUYING, states } = require('../src/constants/buy')
+
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('reviews', {
+    await queryInterface.createTable('buys', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.BIGINT
       },
-      rated: {
-        allowNull: false,
+      code: {
+        allowNull: true,
         type: Sequelize.STRING
       },
-      commentary: {
+      total_price: {
         allowNull: false,
-        type: Sequelize.STRING
-      },
-      product_id: {
-        allowNull: false,
-        type: Sequelize.BIGINT
+        type: Sequelize.FLOAT
       },
       user_id: {
         allowNull: false,
         type: Sequelize.BIGINT
       },
-      name: {
-        allowNull: false,
-        type: Sequelize.STRING
+      state: {
+        type: Sequelize.ENUM,
+        values: states,
+        defaultValue: BUYING,
+        allowNull: false
       },
       created_at: {
         allowNull: false,
@@ -39,6 +40,6 @@ module.exports = {
     })
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('reviews')
+    await queryInterface.dropTable('buys')
   }
 }

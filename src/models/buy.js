@@ -1,34 +1,31 @@
 'use strict'
 const { Model } = require('sequelize')
+const { states, BUYING } = require('../constants/product')
 
 module.exports = (sequelize, DataTypes) => {
-  class Review extends Model {
+  class Buy extends Model {
     static associate(models) {
       // define association here
     }
   }
-  Review.init({
-    rated: {
-      allowNull: false,
+  Buy.init({
+    code: {
+      allowNull: true,
       type: DataTypes.STRING
     },
-    commentary: {
+    total_price: {
       allowNull: false,
-      type: DataTypes.STRING
+      type: DataTypes.FLOAT
     },
-    productId: {
+    user_id: {
       allowNull: false,
-      type: DataTypes.BIGINT,
-      field: 'product_id'
+      type: DataTypes.BIGINT
     },
-    userId: {
-      allowNull: false,
-      type: DataTypes.BIGINT,
-      field: 'user_id'
-    },
-    name: {
-      allowNull: false,
-      type: DataTypes.STRING
+    state: {
+      type: DataTypes.ENUM,
+      values: states,
+      defaultValue: BUYING,
+      allowNull: false
     },
     createdAt: {
       type: DataTypes.DATE,
@@ -37,12 +34,12 @@ module.exports = (sequelize, DataTypes) => {
     updatedAt: {
       type: DataTypes.DATE,
       field: 'updated_at'
-    }
+    },
   }, {
     sequelize,
-    modelName: 'Review',
-    tableName: 'reviews',
+    modelName: 'Buy',
+    tableName: 'buys',
     underscored: true
   })
-  return Review
+  return Buy
 }
