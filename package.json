@@ -44,7 +44,7 @@
   "config": {
     "fullName": "Base API",
     "prefix": "base",
-    "port": 8100
+    "port": 8080
   },
   "jest": {
     "testEnvironment": "node",

@@ -1,9 +1,7 @@
 'use strict'
-const pack = require('../package.json')
 const variables = require('./variables')
-const prefix = `/${pack.config.prefix}/v1`
-
-const port = variables.port || 8100
+const prefix = `/${variables.config.prefix}/v1`
+const port = variables.config.port
 
 const TWO_MONTHS = 60 * 60 * 24 * 30 * 2 // secs * min * hrs * days * months
 
