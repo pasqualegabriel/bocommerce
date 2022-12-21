@@ -5,7 +5,8 @@ const { roles, USER } = require('../constants/user')
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     static associate(models) {
-      // define association here
+      models.User.hasMany(models.Buy, { foreignKey: 'fk_userid', sourceKey: 'id' })
+      models.User.hasMany(models.Address, { foreignKey: 'fk_userid', sourceKey: 'id' })
     }
   }
   User.init({

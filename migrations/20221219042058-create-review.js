@@ -8,6 +8,14 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.BIGINT
       },
+      fk_productid: {
+        type: Sequelize.BIGINT,
+        onDelete: 'CASCADE',
+        references: {
+          model: 'products',
+          key: 'id'
+        }
+      },
       rated: {
         allowNull: false,
         type: Sequelize.STRING
@@ -15,10 +23,6 @@ module.exports = {
       commentary: {
         allowNull: false,
         type: Sequelize.STRING
-      },
-      product_id: {
-        allowNull: false,
-        type: Sequelize.BIGINT
       },
       user_id: {
         allowNull: false,

@@ -4,7 +4,7 @@ const { Model } = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
   class Review extends Model {
     static associate(models) {
-      // define association here
+      models.Review.belongsTo(models.Product, { foreignKey: 'fk_productid', targetKey: 'id' })
     }
   }
   Review.init({
@@ -15,11 +15,6 @@ module.exports = (sequelize, DataTypes) => {
     commentary: {
       allowNull: false,
       type: DataTypes.STRING
-    },
-    productId: {
-      allowNull: false,
-      type: DataTypes.BIGINT,
-      field: 'product_id'
     },
     userId: {
       allowNull: false,

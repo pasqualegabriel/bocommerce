@@ -1,6 +1,6 @@
 'use strict'
 
-const { BUYING, states } = require('../src/constants/buy')
+const { BUYING, states } = require('../src/constants/product')
 
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -10,6 +10,14 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.BIGINT
+      },
+      fk_userid: {
+        type: Sequelize.BIGINT,
+        onDelete: 'CASCADE',
+        references: {
+          model: 'users',
+          key: 'id'
+        }
       },
       code: {
         allowNull: true,

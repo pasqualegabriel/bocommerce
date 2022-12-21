@@ -4,7 +4,8 @@ const { Model } = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
   class Address extends Model {
     static associate(models) {
-      // define association here
+      models.Address.belongsTo(models.User, { foreignKey: 'fk_userid', targetKey: 'id' })
+      models.Address.belongsTo(models.Buy, { foreignKey: 'fk_buyid', targetKey: 'id' })
     }
   }
   Address.init({

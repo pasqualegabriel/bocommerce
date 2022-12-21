@@ -1,5 +1,7 @@
 'use strict'
 
+const { ADDRESS, states } = require('../src/constants/buy')
+
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('addresses', {
@@ -24,6 +26,12 @@ module.exports = {
           model: 'buys',
           key: 'id'
         }
+      },
+      type: {
+        type: Sequelize.ENUM,
+        values: states,
+        defaultValue: ADDRESS,
+        allowNull: false
       },
       cp: {
         allowNull: false,

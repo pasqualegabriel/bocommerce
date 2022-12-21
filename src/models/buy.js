@@ -5,7 +5,9 @@ const { states, BUYING } = require('../constants/product')
 module.exports = (sequelize, DataTypes) => {
   class Buy extends Model {
     static associate(models) {
-      // define association here
+      models.Buy.hasMany(models.Purchase, { foreignKey: 'fk_buyid', sourceKey: 'id' })
+      models.Buy.belongsTo(models.User, { foreignKey: 'fk_userid', targetKey: 'id' })
+      models.Buy.hasOne(models.Address, { foreignKey: 'fk_buyid', sourceKey: 'id' })
     }
   }
   Buy.init({
