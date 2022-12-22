@@ -2,12 +2,12 @@
 const { Model } = require('sequelize')
 
 module.exports = (sequelize, DataTypes) => {
-  class Purchase extends Model {
+  class Booking extends Model {
     static associate(models) {
-      models.Purchase.belongsTo(models.Buy, { foreignKey: 'fk_buyid', targetKey: 'id' })
+      models.Booking.belongsTo(models.Order, { foreignKey: 'fk_orderid', targetKey: 'id' })
     }
   }
-  Purchase.init({
+  Booking.init({
     title: {
       allowNull: false,
       type: DataTypes.STRING
@@ -35,9 +35,9 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {
     sequelize,
-    modelName: 'Purchase',
-    tableName: 'purchases',
+    modelName: 'Booking',
+    tableName: 'bookings',
     underscored: true
   })
-  return Purchase
+  return Booking
 }

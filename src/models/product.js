@@ -6,6 +6,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       models.Product.hasMany(models.Image, { foreignKey: 'fk_productid', sourceKey: 'id' })
       models.Product.hasMany(models.Review, { foreignKey: 'fk_productid', sourceKey: 'id' })
+      models.Product.belongsTo(models.Category, { foreignKey: 'fk_categoryid', targetKey: 'id' })
     }
   }
   Product.init({
@@ -53,6 +54,10 @@ module.exports = (sequelize, DataTypes) => {
     url: {
       type: DataTypes.STRING,
       allowNull: true
+    },
+    brand: {
+      allowNull: true,
+      type: DataTypes.STRING
     },
     createdAt: {
       type: DataTypes.DATE,

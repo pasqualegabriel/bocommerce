@@ -2,18 +2,18 @@
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('purchases', {
+    await queryInterface.createTable('bookings', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.BIGINT
       },
-      fk_buyid: {
+      fk_orderid: {
         type: Sequelize.BIGINT,
         onDelete: 'CASCADE',
         references: {
-          model: 'buys',
+          model: 'orders',
           key: 'id'
         }
       },
@@ -44,6 +44,6 @@ module.exports = {
     })
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('purchases')
+    await queryInterface.dropTable('bookings')
   }
 }

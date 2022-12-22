@@ -8,6 +8,14 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.BIGINT
       },
+      fk_categoryid: {
+        type: Sequelize.BIGINT,
+        onDelete: 'CASCADE',
+        references: {
+          model: 'users',
+          key: 'id'
+        }
+      },
       title: {
         allowNull: false,
         type: Sequelize.STRING
@@ -48,6 +56,10 @@ module.exports = {
         defaultValue: false
       },
       url: {
+        allowNull: true,
+        type: Sequelize.STRING
+      },
+      brand: {
         allowNull: true,
         type: Sequelize.STRING
       },

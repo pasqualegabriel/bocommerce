@@ -3,14 +3,14 @@ const { Model } = require('sequelize')
 const { states, BUYING } = require('../constants/product')
 
 module.exports = (sequelize, DataTypes) => {
-  class Buy extends Model {
+  class Order extends Model {
     static associate(models) {
-      models.Buy.hasMany(models.Purchase, { foreignKey: 'fk_buyid', sourceKey: 'id' })
-      models.Buy.belongsTo(models.User, { foreignKey: 'fk_userid', targetKey: 'id' })
-      models.Buy.hasOne(models.Address, { foreignKey: 'fk_buyid', sourceKey: 'id' })
+      models.Order.hasMany(models.Booking, { foreignKey: 'fk_orderid', sourceKey: 'id' })
+      models.Order.belongsTo(models.User, { foreignKey: 'fk_userid', targetKey: 'id' })
+      models.Order.hasOne(models.Address, { foreignKey: 'fk_orderid', sourceKey: 'id' })
     }
   }
-  Buy.init({
+  Order.init({
     code: {
       allowNull: true,
       type: DataTypes.STRING
@@ -39,9 +39,9 @@ module.exports = (sequelize, DataTypes) => {
     },
   }, {
     sequelize,
-    modelName: 'Buy',
-    tableName: 'buys',
+    modelName: 'Order',
+    tableName: 'orders',
     underscored: true
   })
-  return Buy
+  return Order
 }

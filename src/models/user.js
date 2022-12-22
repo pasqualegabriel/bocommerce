@@ -5,7 +5,7 @@ const { roles, USER } = require('../constants/user')
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     static associate(models) {
-      models.User.hasMany(models.Buy, { foreignKey: 'fk_userid', sourceKey: 'id' })
+      models.User.hasMany(models.Order, { foreignKey: 'fk_userid', sourceKey: 'id' })
       models.User.hasMany(models.Address, { foreignKey: 'fk_userid', sourceKey: 'id' })
     }
   }
@@ -27,6 +27,14 @@ module.exports = (sequelize, DataTypes) => {
     code: {
       type: DataTypes.STRING,
       allowNull: true
+    },
+    phone: {
+      allowNull: true,
+      type: DataTypes.STRING
+    },
+    dni: {
+      allowNull: true,
+      type: DataTypes.STRING
     },
     role: {
       type: DataTypes.ENUM,

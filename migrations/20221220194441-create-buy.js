@@ -4,7 +4,7 @@ const { BUYING, states } = require('../src/constants/product')
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('buys', {
+    await queryInterface.createTable('orders', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -48,6 +48,6 @@ module.exports = {
     })
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('buys')
+    await queryInterface.dropTable('orders')
   }
 }

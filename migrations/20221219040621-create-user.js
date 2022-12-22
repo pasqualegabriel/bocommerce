@@ -28,6 +28,14 @@ module.exports = {
         allowNull: true,
         type: Sequelize.STRING
       },
+      phone: {
+        allowNull: true,
+        type: Sequelize.STRING
+      },
+      dni: {
+        allowNull: true,
+        type: Sequelize.STRING
+      },
       role: {
         type: Sequelize.ENUM,
         values: roles,

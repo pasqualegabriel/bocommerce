@@ -1,6 +1,6 @@
 'use strict'
 
-const { ADDRESS, states } = require('../src/constants/buy')
+const { ADDRESS, states } = require('../src/constants/order')
 
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -19,11 +19,11 @@ module.exports = {
           key: 'id'
         }
       },
-      fk_buyid: {
+      fk_orderid: {
         type: Sequelize.BIGINT,
         onDelete: 'CASCADE',
         references: {
-          model: 'buys',
+          model: 'orders',
           key: 'id'
         }
       },
